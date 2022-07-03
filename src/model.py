@@ -1,6 +1,8 @@
+from datetime import datetime
+
 from sqlalchemy import Column
 from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy.types import Integer, String
+from sqlalchemy.types import DateTime, Integer, String
 
 from connector import engine, session
 
@@ -12,6 +14,8 @@ class User(Base):
     id = Column(Integer, primary_key=True)
     name = Column(String(50))
     password = Column(String(50))
+    created_at = Column(DateTime(timezone=False), default=datetime.now())
+    updated_at = Column(DateTime(timezone=False), default=datetime.now())
 
 
 Base.metadata.create_all(engine)
