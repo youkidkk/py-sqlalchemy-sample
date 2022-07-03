@@ -20,9 +20,28 @@ class User(Base):
 
 Base.metadata.create_all(engine)
 
+user: User = session.query(User).first()
 # insert
-user_new = User()
-user_new.name = "hoge"
-user_new.password = "fuga"
-session.add(user_new)
+if not user:
+    user = User()
+    user.name = "hoge"
+    user.password = "fuga"
+    session.add(user)
+    session.commit()
+
+# update
+user.password = "piyo"
+user.updated_at = datetime.now()
+session.commit()
+
+# select
+user = session.query(User).filter(User.name == "hoge").first()
+if user:
+    print(
+        f"Name: {user.name}, Password: {user.password}, "
+        f"Created at: {user.created_at}, Updated at: {user.updated_at}"
+    )
+
+# delete
+session.delete(user)
 session.commit()
