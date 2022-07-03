@@ -12,6 +12,7 @@ sqlalchemy = "*"
 black = "*"
 flake8 = "*"
 mypy = "*"
+sqlalchemy = {extras = ["mypy"], version = "*"}
 
 [requires]
 python_version = "3.10"
