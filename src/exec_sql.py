@@ -11,4 +11,4 @@ CONN_STR = f"{DATABASE}://{USER}:{PASSWORD}@{HOST}:{PORT}/{DB_NAME}"
 
 engine = sqlalchemy.create_engine(CONN_STR)
 
-engine.execute("insert into test values (1, 'ttt');")
+engine.execute("insert into test (text) values ('ttt');")
